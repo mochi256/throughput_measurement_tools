@@ -5,15 +5,12 @@ from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 from http import HTTPStatus
 from datetime import datetime
-import sys
+import os
 
 LOCK = threading.Lock()
 
 PORT = 8000
-if len(sys.argv) != 2:
-    print("err: invalid count max")
-    sys.exit(-1)
-COUNT_MAX = int(sys.argv[1])
+COUNT_MAX = int(os.environ["COUNT_MAX"])
 COUNT = 0
 
 def httpServe():
