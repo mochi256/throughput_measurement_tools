@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import requests
 from datetime import datetime
+import os
+
+URL = os.environ["APP_URL"]
 
 def is_prime(num):
     is_prime = True
@@ -23,7 +26,7 @@ if __name__ == "__main__":
         print("[{0}] request".format(
             datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f")
         ))
-        res = requests.get("http://localhost:8000/").json()
+        res = requests.get(URL).json()
         number = res["number"]
         if number is None:
             break

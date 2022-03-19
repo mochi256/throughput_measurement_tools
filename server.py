@@ -9,8 +9,8 @@ import os
 
 LOCK = threading.Lock()
 
-PORT = 8000
-COUNT_MAX = int(os.environ["COUNT_MAX"])
+PORT = int(os.environ["APP_SERVER_PORT"])
+COUNT_MAX = int(os.environ["APP_COUNT_MAX"])
 COUNT = 0
 
 def httpServe():
@@ -59,7 +59,7 @@ class StubHttpRequestHandler(BaseHTTPRequestHandler):
         self.__send({"number": COUNT}, HTTPStatus.OK)
 
 if __name__ == "__main__":
-    print('[{0}] server_start localhost:{1}'.format(
+    print('[{0}] server_start 0.0.0.0:{1}'.format(
         datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f"),
         PORT
     ))
