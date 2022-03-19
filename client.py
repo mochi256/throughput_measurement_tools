@@ -17,11 +17,11 @@ def is_prime(num):
 
 if __name__ == "__main__":
     print("[{0}] client_start".format(
-        datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),
+        datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
     ))
     while(True):
         print("[{0}] request".format(
-            datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+            datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f")
         ))
         res = requests.get("http://localhost:8000/").json()
         number = res["number"]
@@ -30,14 +30,14 @@ if __name__ == "__main__":
         
         if is_prime(res["number"]):
             print("[{0}] {1}_is_prime".format(
-                datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),
+                datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
                 number
             ))
             continue
         print("[{0}] {1}_is_not_prime".format(
-            datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),
+            datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
             number
         ))
     print("[{0}] client_terminated".format(
-        datetime.now().strftime("%Y-%m-%d_%H:%M:%S"),
+        datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
     ))
