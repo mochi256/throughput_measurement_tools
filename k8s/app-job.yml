@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 'indexed-job'
+spec:
+  completions: 3
+  parallelism: 3
+  completionMode: Indexed
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: app-job
+        image: mochi256/throughput_measurement_tools:latest
+        command:
+        - sh
+        - -c
+        - "python3 /app/client.py"
+        env:
+        - name: APP_URL
+          value: "http://192.168.0.250:8000/"
