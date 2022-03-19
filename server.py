@@ -48,7 +48,7 @@ class StubHttpRequestHandler(BaseHTTPRequestHandler):
         global COUNT
         if COUNT >= COUNT_MAX:
             print("[{0}] response null".format(
-                datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f")
+                datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f")
             ))
             self.__send({"number": None}, HTTPStatus.FORBIDDEN)
             return
@@ -56,14 +56,14 @@ class StubHttpRequestHandler(BaseHTTPRequestHandler):
         with LOCK:
             COUNT += 1
         print("[{0}] response {1}".format(
-            datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
+            datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f"),
             COUNT,
         ))
         self.__send({"number": COUNT}, HTTPStatus.OK)
 
 if __name__ == "__main__":
     print('[{0}] server_start localhost:{1}'.format(
-        datetime.now().strftime("%Y-%m-%d_%H:%M:%S:%f"),
+        datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f"),
         PORT
     ))
     thread = threading.Thread(target=httpServe)
